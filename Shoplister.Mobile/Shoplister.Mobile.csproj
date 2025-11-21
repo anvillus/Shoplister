@@ -11,10 +11,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Shoplister.Mobile</ApplicationTitle>
+		<ApplicationTitle>Shoplister</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.shoplister.mobile</ApplicationId>
+		<ApplicationId>com.anvillus.shoplister</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
