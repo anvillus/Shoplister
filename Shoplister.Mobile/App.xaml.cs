@@ -1,4 +1,6 @@
-﻿namespace Shoplister.Mobile;
+﻿using Shoplister.Mobile.Features;
+
+namespace Shoplister.Mobile;
 
 public partial class App : Application
 {
