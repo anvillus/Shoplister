@@ -9,6 +9,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .ConfigureServices()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -20,5 +21,15 @@ public static class MauiProgram
 #endif
 
         return builder.Build();
+    }
+
+    private static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
+    {
+        var services = builder.Services;
+
+        // Root page. Injected as a generic Page to allow seamless switching without having to update the type in the App class.
+        services.AddSingleton<Page, MainPage>();
+
+        return builder;
     }
 }
