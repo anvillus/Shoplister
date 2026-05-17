@@ -19,3 +19,12 @@ jobs:
 
       - name: Install MAUI workload
         run: dotnet workload install maui-android
+
+      - name: Build APK
+        run: |
+          cd Shoplister.Mobile
+          dotnet publish -c Release -f net9.0-android -o ./output `
+            -p:AndroidPackageFormat=apk `
+            -p:AndroidKeyStore=false `
+            -p:ApplicationId=com.shoplister `
+            -p:ApplicationName=Shoplister
