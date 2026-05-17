@@ -1,0 +1,9 @@
+name: Build & Create release
+
+on:
+  push:
+    branches: [ setup/pipeline ]
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
