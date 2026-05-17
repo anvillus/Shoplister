@@ -2,7 +2,8 @@ name: Build & Create release
 
 on:
   push:
-    branches: [ setup/pipeline ]
+    tags:
+      - 'v*'
 
 jobs:
   build-and-release:
@@ -32,6 +33,7 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: test-release
+          name: ${{ github.ref_name}}
+          tag_name: ${{ github.ref_name }}
           token: ${{ secrets.GH_RELEASE_PAT }}
           files: Shoplister.Mobile/output/*.apk
