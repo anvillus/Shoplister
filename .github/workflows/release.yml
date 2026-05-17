@@ -28,3 +28,10 @@ jobs:
             -p:AndroidKeyStore=false `
             -p:ApplicationId=com.shoplister `
             -p:ApplicationName=Shoplister
+
+      - name: Create release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: test-release
+          token: ${{ secrets.GH_RELEASE_PAT }}
+          files: Shoplister.Mobile/output/*.apk
