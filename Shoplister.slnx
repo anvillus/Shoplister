@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Shoplister.Mobile/Shoplister.Mobile.csproj" Id="04545b8c-132f-40bb-bebe-c718380d2355">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
