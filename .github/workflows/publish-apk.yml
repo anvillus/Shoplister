@@ -34,3 +34,13 @@ jobs:
           path: src/Shoplister.Mobile/output/*.apk
           overwrite: true
           retention-days: 7
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: apk
