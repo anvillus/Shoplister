@@ -1,0 +1,13 @@
+name: Build & Publish APK
+
+on:
+  push:
+    branches: [ setup/pipeline ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
