@@ -1,0 +1,56 @@
+name: Build & Publish APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install MAUI workload
+        run: dotnet workload install maui-android
+
+      - name: Build APK
+        run: |
+          cd src/Shoplister.Mobile
+          dotnet publish -c Release -f net10.0-android -o ./output `
+            -p:AndroidPackageFormat=apk `
+            -p:AndroidKeyStore=false
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: apk
+          path: src/Shoplister.Mobile/output/*.apk
+          overwrite: true
+          retention-days: 7
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: apk
+          path: artifacts
+
+      - name: Publish APK
+        uses: softprops/action-gh-release@v3
+        with:
+          name: ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          token: ${{ secrets.GH_RELEASE_PAT }}
+          files: artifacts/*.apk
