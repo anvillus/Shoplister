@@ -44,3 +44,11 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: apk
+          path: artifacts
+
+      - name: Publish APK
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: test-release
+          token: ${{ secrets.GH_RELEASE_PAT }}
+          files: artifacts/*.apk
